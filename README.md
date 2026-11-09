@@ -19,6 +19,8 @@ python -m uvicorn api.main:app --reload
 
 The dashboard fetches model metadata and predictions from `http://127.0.0.1:8000`. If the service is unavailable, the Predictive Analytics page clearly reports that state and does not fabricate inference results.
 
+The Predictive Analytics page supports one delivery estimate and a two-scenario comparison. Both scenarios call the same inference API; reported differences are model-based associations, not causal effects. The API validates categories against the training schema and validates numeric inputs against training bounds. Run checks with `python -m pytest api/test_api.py machine-learning/test_consistency.py -q`.
+
 ## Project folders
 
 - `src/` dashboard source
