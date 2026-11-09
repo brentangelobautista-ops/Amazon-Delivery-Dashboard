@@ -3,7 +3,33 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "scripts": { "dev": "vite", "build": "tsc -b && vite build", "lint": "eslint ." },
-  "dependencies": { "@vitejs/plugin-react": "latest", "vite": "latest", "typescript": "latest", "react": "latest", "react-dom": "latest", "recharts": "latest", "lucide-react": "latest" },
-  "devDependencies": { "eslint": "latest", "@eslint/js": "latest", "typescript-eslint": "latest", "eslint-plugin-react-hooks": "latest", "eslint-plugin-react-refresh": "latest", "@types/react": "latest", "@types/react-dom": "latest" }
+  "scripts": {
+    "dev": "vite",
+    "dev:web": "vite --host 127.0.0.1",
+    "dev:web:with-api": "node scripts/start_dashboard.mjs",
+    "dev:api": "python scripts/start_prediction_api.py",
+    "dev:all": "concurrently --kill-others-on-fail --names API,WEB --prefix [{name}] --prefix-colors yellow,cyan \"npm run dev:api\" \"npm run dev:web:with-api\"",
+    "setup:api": "python -m pip install -r api/requirements.txt -r machine-learning/requirements.txt",
+    "build": "tsc -b && vite build",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "recharts": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "concurrently": "^10.0.7",
+    "eslint": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-react-refresh": "latest",
+    "typescript-eslint": "latest"
+  }
 }
