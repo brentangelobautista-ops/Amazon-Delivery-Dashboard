@@ -1,0 +1,114 @@
+{
+  "project": "LogiTrack",
+  "task": "Delivery duration prediction",
+  "target": "Delivery_Time (minutes)",
+  "model": "Random Forest",
+  "features": [
+    "Agent_Age",
+    "Agent_Rating",
+    "Distance_Model_km",
+    "Order_Hour",
+    "Day_of_Week",
+    "Weather",
+    "Traffic",
+    "Vehicle",
+    "Area",
+    "Category"
+  ],
+  "categorical_features": [
+    "Weather",
+    "Traffic",
+    "Vehicle",
+    "Area",
+    "Category"
+  ],
+  "numeric_features": [
+    "Agent_Age",
+    "Agent_Rating",
+    "Distance_Model_km",
+    "Order_Hour",
+    "Day_of_Week"
+  ],
+  "train_rows": 34682,
+  "test_rows": 9057,
+  "chronological_split_date": "2022-03-29",
+  "distance_model_cap_p99_km": 20.853,
+  "candidate_models": [
+    {
+      "model": "Dummy mean",
+      "mae": 41.785,
+      "rmse": 52.493,
+      "r2": -0.001
+    },
+    {
+      "model": "Ridge",
+      "mae": 25.394,
+      "rmse": 32.232,
+      "r2": 0.623
+    },
+    {
+      "model": "Random Forest",
+      "mae": 17.595,
+      "rmse": 22.647,
+      "r2": 0.814
+    },
+    {
+      "model": "Gradient Boosting",
+      "mae": 19.364,
+      "rmse": 24.854,
+      "r2": 0.776
+    }
+  ],
+  "held_out_metrics": {
+    "mae": 17.595,
+    "rmse": 22.647,
+    "r2": 0.814
+  },
+  "feature_importance": [
+    {
+      "feature": "Category",
+      "importance": 0.2704
+    },
+    {
+      "feature": "Agent_Rating",
+      "importance": 0.1695
+    },
+    {
+      "feature": "Weather",
+      "importance": 0.1552
+    },
+    {
+      "feature": "Traffic",
+      "importance": 0.126
+    },
+    {
+      "feature": "Distance_Model_km",
+      "importance": 0.1161
+    },
+    {
+      "feature": "Agent_Age",
+      "importance": 0.0925
+    },
+    {
+      "feature": "Vehicle",
+      "importance": 0.0274
+    },
+    {
+      "feature": "Order_Hour",
+      "importance": 0.019
+    },
+    {
+      "feature": "Day_of_Week",
+      "importance": 0.0144
+    },
+    {
+      "feature": "Area",
+      "importance": 0.0096
+    }
+  ],
+  "notes": [
+    "The pipeline fits imputers, scaling, and one-hot encoding on training data only.",
+    "Distance is capped at the training P99 only for model input robustness; the original source data remains unchanged.",
+    "Predictions estimate historical patterns and do not establish causality."
+  ]
+}
